@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Cloud Training &amp; Student Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo">☁ CloudDevOps Academy</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="register.html" class="active">Register</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container narrow">
+    <div class="card form-card">
+      <h1>Student Enrollment</h1>
+      <p>Fill in your details to reserve your seat in the next batch.</p>
+
+      <form id="registerForm" action="submit.php" method="POST" novalidate>
+        <input type="hidden" name="form_type" value="register">
+
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input type="text" id="full_name" name="full_name" maxlength="100" placeholder="e.g. Priya Sharma">
+          <div class="field-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" maxlength="150" placeholder="you@example.com">
+          <div class="field-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" maxlength="20" placeholder="+91 98765 43210">
+          <div class="field-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="track">Training Track</label>
+          <select id="track" name="track">
+            <option value="">-- Select a track --</option>
+            <option value="Linux &amp; Cloud Fundamentals">Linux &amp; Cloud Fundamentals</option>
+            <option value="DevOps &amp; CI/CD">DevOps &amp; CI/CD</option>
+            <option value="Docker &amp; Containers">Docker &amp; Containers</option>
+            <option value="Full Cloud DevOps Bundle">Full Cloud DevOps Bundle (all 4 weeks)</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Experience Level</label>
+          <div class="radio-row">
+            <label><input type="radio" name="experience" value="Beginner"> Beginner</label>
+            <label><input type="radio" name="experience" value="Intermediate"> Intermediate</label>
+            <label><input type="radio" name="experience" value="Advanced"> Advanced</label>
+          </div>
+          <div class="field-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-weight:500">
+            <input type="checkbox" name="terms" value="1"> I agree to the training terms and conditions.
+          </label>
+          <div class="field-error"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enroll Now</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2026 CloudDevOps Academy &middot; Cloud Training &amp; Student Portal</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

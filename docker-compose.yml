@@ -1,0 +1,50 @@
+services:
+  web:
+    build: ./apache-php
+    container_name: cloud_portal_web
+    ports:
+      - "9000:80"
+    volumes:
+      - ./website:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_NAME: student_portal
+      DB_USER: portal_user
+      DB_PASS: portal_pass123
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: cloud_portal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: student_portal
+      MYSQL_USER: portal_user
+      MYSQL_PASSWORD: portal_pass123
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass123"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: cloud_portal_pma
+    ports:
+      - "9001:80"
+    environment:
+      PMA_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  db_data:
